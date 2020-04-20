@@ -1,0 +1,7 @@
+*.o
+*.dSYM
+queue-tests
+gtest
+stack-tests
+dict-tests
+.git/
