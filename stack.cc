@@ -15,7 +15,7 @@ void stack_destroy(my_stack_t* stack) {
   node_t *temp = stack->head;
   for(node_t *current = stack->head; current != NULL;){ // free all nodes sequentially
     temp = current;
-    current = temp->parent;
+    current = temp->next;
     free(temp);
   }
 }
@@ -27,7 +27,7 @@ void stack_push(my_stack_t* stack, int element) {
   stack->head = (node_t*)malloc(sizeof(node_t*));
   if(stack->head == NULL) perror("Could not allocate space");
   stack->head->data = element;
-  stack->head->parent = temp; // Set previous node to parent
+  stack->head->next = temp; // Set previous node to next
   pthread_mutex_unlock(&stack->lock);
 }
 
@@ -47,7 +47,7 @@ int stack_pop(my_stack_t* stack) {
     return -1;
   } else{
     int val = stack->head->data;
-    node_t *temp = stack->head->parent; // Save parent and head val before freeing
+    node_t *temp = stack->head->next; // Save next and head val before freeing
     free(stack->head);
     stack->head = temp; // Set head to next val
     pthread_mutex_unlock(&stack->lock);

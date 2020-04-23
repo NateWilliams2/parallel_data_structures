@@ -77,7 +77,7 @@ TEST(StackTest, Invariant2){
 
   push_args_t args[10];
   pthread_t workers[10];
-  for(int i=0; i < 10; i++){ // Push 10 elements
+  for(int i=0; i < 10; i++){ // Push 10 non-pushval elements
     args[i].s = &s;
     args[i].val = pushval;
     if(pthread_create(&workers[i], NULL, push_worker, &args[i]) != 0) perror("Could not create thread");
@@ -94,7 +94,7 @@ TEST(StackTest, Invariant2){
 }
 
 
-// A test of invariant 1
+// A test of invariant 1: push/pop number integrity
 TEST(StackTest, Invariant1) {
   srand (time(NULL)); // Seed random number
   // Create a stack

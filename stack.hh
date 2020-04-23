@@ -6,7 +6,7 @@
 
 typedef struct node{
   int data;
-  struct node* parent;
+  struct node* next;
 } node_t;
 
 typedef struct my_stack {
