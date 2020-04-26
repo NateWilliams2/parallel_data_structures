@@ -65,7 +65,7 @@ void queue_destroy(my_queue_t* queue) {
 // Put an element at the end of a queue
 void queue_put(my_queue_t* queue, int element) {
   bool both_unlock = atomic_lock(queue, 2, TAIL_LOCK); // Lock both locks if queue is small
-  node_t *new_node = (node_t*)malloc(sizeof(node_t*));
+  node_t *new_node = (node_t*)malloc(sizeof(node_t));
   if(new_node == NULL) perror("Could not allocate space");
   new_node->data = element;
   new_node->next = NULL;

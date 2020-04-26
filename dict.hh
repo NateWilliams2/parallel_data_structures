@@ -1,11 +1,22 @@
 #ifndef DICT_H
 #define DICT_H
+//#define MAX_KEY_SIZE 20
 
 #include <stdbool.h>
 
+typedef struct node {
+  struct node *parent, *child;
+  int val;
+  char *key;
+  //char key[MAX_KEY_SIZE];
+} node_t;
+
+typedef struct list {
+  node_t *head;
+} list_t;
+
 typedef struct my_dict {
-  // Add fields to your dict type here
-  int placeholder;
+  list_t **lists;
 } my_dict_t;
 
 // Initialize a dictionary

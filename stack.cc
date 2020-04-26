@@ -24,7 +24,7 @@ void stack_destroy(my_stack_t* stack) {
 void stack_push(my_stack_t* stack, int element) {
   pthread_mutex_lock(&stack->lock);
   node_t *temp = stack->head; // Previous node saved to temp
-  stack->head = (node_t*)malloc(sizeof(node_t*));
+  stack->head = (node_t*)malloc(sizeof(node_t));
   if(stack->head == NULL) perror("Could not allocate space");
   stack->head->data = element;
   stack->head->next = temp; // Set previous node to next
