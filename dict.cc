@@ -20,7 +20,7 @@ void list_set(list_t* list, const char* key, int val){
       current->val = val;
       pthread_mutex_unlock(&(list->lock));
       return;
-    // Case where we reach end of list
+      // Case where we reach end of list
     } else if(current->child == NULL){ // End of list, allocate new node for key/val pair
       current->child = (node_t*) malloc(sizeof(node_t));
       assert(current->child != NULL);
