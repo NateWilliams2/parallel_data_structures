@@ -3,16 +3,17 @@
 //#define MAX_KEY_SIZE 20
 
 #include <stdbool.h>
+#include <pthread.h>
 
 typedef struct node {
   struct node *parent, *child;
   int val;
   char *key;
-  //char key[MAX_KEY_SIZE];
 } node_t;
 
 typedef struct list {
   node_t *head;
+  pthread_mutex_t lock;
 } list_t;
 
 typedef struct my_dict {
